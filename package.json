@@ -1,7 +1,7 @@
 {
   "name": "e-commerce",
   "version": "1.0.0",
-  "description": "",
+  "description": "e-commerce backend using node/express",
   "main": "server.js",
   "directories": {
     "test": "tests"
@@ -12,7 +12,7 @@
     "dev": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "moezgwall",
   "license": "ISC",
   "type": "commonjs",
   "dependencies": {
