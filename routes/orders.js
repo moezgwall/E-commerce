@@ -13,14 +13,18 @@ function notifyUser(userID, msg) {
 }
 
 // checkout
+// payement api
 
 router.post("/checkout", auth, async (req, res) => {
   const session = await mongoose.startSession();
   session.startTransaction();
   try {
+    // find the cart for specific user and populate it with products
     const cart = await Cart.findOne({ user: req.user._id }).populate(
       "items.product"
     );
+    // if cart doesnt exist or it's existing and empty
+    // throw new error
     if (!cart || cart.items.length === 0) {
       throw new Error("cart is already empty");
     }
@@ -43,6 +47,8 @@ router.post("/checkout", auth, async (req, res) => {
       item.product.reserved += item.quantity;
       await item.product.save({ session });
     }
+    // create a new order
+    // todo:  remove this new + . await order.save()
 
     const order = new Order({
       user: req.user._id,
