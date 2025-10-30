@@ -5,7 +5,7 @@ const auth = require("../middleware/auth");
 
 // adding a product
 
-router.post("/", auth, async (req, res) => {
+router.post("/addprod", auth, async (req, res) => {
   if (req.user.role !== "admin") {
     return res.status(403).json({ error: "Forbidden access" });
   }
@@ -23,7 +23,7 @@ router.post("/", auth, async (req, res) => {
 });
 
 // get all the products
-router.get("/", async (req, res) => {
+router.get("/all", async (req, res) => {
   try {
     const products = await Product.find();
     return res.json(products);

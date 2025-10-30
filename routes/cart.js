@@ -46,7 +46,7 @@ router.post("/remove", auth, async (req, res) => {
   return res.json(cart);
 });
 // get cart
-router.get("/", auth, async (req, res) => {
+router.get("/mycart", auth, async (req, res) => {
   const cart = await Cart.findOne({ user: req.user._id }).populate(
     "items.product"
   );
